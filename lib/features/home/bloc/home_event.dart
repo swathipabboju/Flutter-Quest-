@@ -8,10 +8,10 @@ sealed class HomeEvent extends Equatable {
 }
 
 // event 1
-class HomeProductWishlistButtonClickedEvent extends HomeEvent {}
+class HomeWishlistButtonClickedEvent extends HomeEvent {}
 
 // event 2
-class HomeProductCartWishlistButtonClickedEvent extends HomeEvent {}
+class HomeCartButtonClickedEvent extends HomeEvent {}
 
 class HomeWishlistButtonNavigateEvent extends HomeEvent {}
 

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:sample_app/features/cart/ui/cart_page.dart';
 import 'package:sample_app/features/home/ui/home.dart';
+import 'package:sample_app/features/wishlist/ui/whishlist_page.dart';
 import 'package:sample_app/view/Login/scratch_card_screen.dart';
 import 'package:sample_app/view/Login/setMpin.dart';
 import 'package:sample_app/view/Login/signup.dart';
@@ -34,6 +36,8 @@ class AppPages {
       AppRoutes.addtodo: (context) => AddTodo(),
       AppRoutes.postpage: (context) => PostPage(),
       AppRoutes.homepage: (context) => HomePage(),
+      AppRoutes.cartpage: (context) => CartPage(),
+      AppRoutes.whishlistPage: (context) => WhishListPage(),
     };
   }
 }

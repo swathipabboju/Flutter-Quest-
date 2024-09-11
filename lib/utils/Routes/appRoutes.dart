@@ -17,4 +17,6 @@ class AppRoutes {
   static const addtodo = "/addtodo";
   static const postpage = "/postpage";
   static const homepage = "/homepage";
+  static const cartpage = "/cartpage";
+  static const whishlistPage = "/whishlistPage";
 }

@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "915074933400",
+    "project_id": "electrochat-e46c0",
+    "storage_bucket": "electrochat-e46c0.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:915074933400:android:6808eddea7e2e1f56be6ed",
+        "android_client_info": {
+          "package_name": "com.electrochat.in"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "915074933400-qr2kt56o5t0ma7qfo23k9qd37ml7nh53.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBIL_VaPerEppGi74iV95maLVMMFSYp1Zw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "915074933400-qr2kt56o5t0ma7qfo23k9qd37ml7nh53.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -60,7 +60,7 @@ class CartTileWidget extends StatelessWidget {
             children: [
               ElevatedButton(
                 onPressed: () {
-                  cartBloc.add(RemoveFromCartEvent(
+                  cartBloc.add(CartRemoveFromCartEvent(
                       productTobeRemoved: productDataModel));
                 },
                 child: Text(

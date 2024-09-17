@@ -8,9 +8,9 @@ sealed class CartEvent extends Equatable {
 }
 
 class CartInitialEvent extends CartEvent {}
-class RemoveFromCartEvent extends CartEvent {
+class CartRemoveFromCartEvent extends CartEvent {
   final ProductDataModel productTobeRemoved;
-  RemoveFromCartEvent({required this.productTobeRemoved});
+  CartRemoveFromCartEvent({required this.productTobeRemoved});
 }
 
 

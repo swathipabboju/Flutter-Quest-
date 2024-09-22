@@ -1,6 +1,6 @@
 class AppRoutes {
   AppRoutes._();
-  static const initial = homepage;
+  static const initial = excelDataView;
   static const login = "/login.dart";
   static const loginWithMobile = "/loginWithMobileView.dart";
   static const mpin = "/mpin.dart";
@@ -19,4 +19,5 @@ class AppRoutes {
   static const homepage = "/homepage";
   static const cartpage = "/cartpage";
   static const whishlistPage = "/whishlistPage";
+  static const excelDataView = "/excelDataView";
 }

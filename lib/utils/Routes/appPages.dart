@@ -10,6 +10,7 @@ import 'package:sample_app/view/cubit/add_todo.dart';
 import 'package:sample_app/view/cubit/counter_bloc_page.dart';
 import 'package:sample_app/view/cubit/counter_page.dart';
 import 'package:sample_app/view/cubit/display_todo_list.dart';
+import 'package:sample_app/view/excel_data_view.dart';
 import 'package:sample_app/view/insta/post_page.dart';
 import 'package:sample_app/view/sign_in_with_phone.dart';
 import '../../view/Login/forgotpassword.dart';
@@ -38,6 +39,7 @@ class AppPages {
       AppRoutes.homepage: (context) => HomePage(),
       AppRoutes.cartpage: (context) => CartPage(),
       AppRoutes.whishlistPage: (context) => WhishListPage(),
+      AppRoutes.excelDataView: (context) => ExcelDataView(title: "Excel data",),
     };
   }
 }

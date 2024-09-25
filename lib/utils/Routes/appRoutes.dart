@@ -1,6 +1,6 @@
 class AppRoutes {
   AppRoutes._();
-  static const initial = excelDataView;
+  static const initial = postpage;
   static const login = "/login.dart";
   static const loginWithMobile = "/loginWithMobileView.dart";
   static const mpin = "/mpin.dart";

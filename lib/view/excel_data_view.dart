@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:syncfusion_flutter_xlsio/xlsio.dart' as xlsio;
 
 class ExcelDataView extends StatefulWidget {
   final String title;

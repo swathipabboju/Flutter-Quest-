@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:sample_app/features/cart/ui/cart_page.dart';
 import 'package:sample_app/features/home/ui/home.dart';
+import 'package:sample_app/features/post/ui/post_page.dart';
 import 'package:sample_app/features/wishlist/ui/whishlist_page.dart';
 import 'package:sample_app/view/Login/scratch_card_screen.dart';
 import 'package:sample_app/view/Login/setMpin.dart';
@@ -11,7 +12,6 @@ import 'package:sample_app/view/cubit/counter_bloc_page.dart';
 import 'package:sample_app/view/cubit/counter_page.dart';
 import 'package:sample_app/view/cubit/display_todo_list.dart';
 import 'package:sample_app/view/excel_data_view.dart';
-import 'package:sample_app/view/insta/post_page.dart';
 import 'package:sample_app/view/sign_in_with_phone.dart';
 import '../../view/Login/forgotpassword.dart';
 import '../../view/Login/login.dart';

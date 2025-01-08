@@ -1,4 +1,4 @@
-# sample_app
+# TalkNest
 
 A new Flutter project.
 

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:sample_app/utils/ReusableWidgets/button.dart';
-import 'package:sample_app/utils/ReusableWidgets/pincodefield.dart';
-import 'package:sample_app/viewModel/validateMpinViewModel.dart';
+import 'package:TalkNest/utils/ReusableWidgets/button.dart';
+import 'package:TalkNest/utils/ReusableWidgets/pincodefield.dart';
+import 'package:TalkNest/viewModel/validateMpinViewModel.dart';
 
 import '../../utils/AppAssetsPath/assetpath.dart';
 

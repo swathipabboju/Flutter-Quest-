@@ -1,14 +1,10 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:provider/provider.dart';
-import 'package:sample_app/cubit/todolist_cubit.dart';
-import 'package:sample_app/firebase_options.dart';
-import 'package:sample_app/utils/AppColors/colors.dart';
-import 'package:sample_app/utils/Strings/strings.dart';
-import 'package:sample_app/viewModel/bloc/counter_bloc_view_model.dart';
-import 'package:sample_app/viewModel/cubit/counter_cubit_view_model.dart';
-import 'package:sample_app/viewModel/loginViewModel.dart';
+import 'package:TalkNest/firebase_options.dart';
+import 'package:TalkNest/utils/AppColors/colors.dart';
+import 'package:TalkNest/utils/Strings/strings.dart';
+import 'package:TalkNest/viewModel/loginViewModel.dart';
 import 'utils/Routes/appPages.dart';
 import 'utils/Routes/appRoutes.dart';
 

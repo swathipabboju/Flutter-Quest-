@@ -1,7 +1,7 @@
 import 'dart:convert';
 
 import 'package:http/http.dart' as http;
-import 'package:sample_app/model/post_data_response.dart';
+import 'package:TalkNest/model/post_data_response.dart';
 
 class PostRepository {
   final String baseUrl = "https://jsonplaceholder.typicode.com/";

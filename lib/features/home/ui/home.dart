@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:sample_app/features/home/bloc/home_bloc.dart';
-import 'package:sample_app/features/home/ui/product_data_model.dart';
-import 'package:sample_app/res/color_constants.dart';
-import 'package:sample_app/res/styles/font_styles.dart';
-import 'package:sample_app/utils/Routes/appRoutes.dart';
+import 'package:TalkNest/features/home/bloc/home_bloc.dart';
+import 'package:TalkNest/features/home/ui/product_data_model.dart';
+import 'package:TalkNest/res/color_constants.dart';
+import 'package:TalkNest/res/styles/font_styles.dart';
+import 'package:TalkNest/utils/Routes/appRoutes.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -30,8 +30,8 @@ class _HomePageState extends State<HomePage> {
           ScaffoldMessenger.of(context).showSnackBar(
               SnackBar(content: Text("Product added to whishlist")));
         } else if (state is HomeProductItemWhsihlistActionState) {
-          ScaffoldMessenger.of(context).showSnackBar(
-              SnackBar(content: Text("Product added to cart")));
+          ScaffoldMessenger.of(context)
+              .showSnackBar(SnackBar(content: Text("Product added to cart")));
         }
       },
       builder: (context, state) {

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:sample_app/utils/AppAssetsPath/assetpath.dart';
-import 'package:sample_app/viewModel/resetPasswordViewModel.dart';
+import 'package:TalkNest/utils/AppAssetsPath/assetpath.dart';
+import 'package:TalkNest/viewModel/resetPasswordViewModel.dart';
 import '../../utils/ReusableWidgets/button.dart';
 import 'package:intl_phone_field/intl_phone_field.dart';
 

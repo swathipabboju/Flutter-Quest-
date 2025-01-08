@@ -1,19 +1,19 @@
 import 'package:flutter/material.dart';
-import 'package:sample_app/features/cart/ui/cart_page.dart';
-import 'package:sample_app/features/home/ui/home.dart';
-import 'package:sample_app/features/post/ui/post_page.dart';
-import 'package:sample_app/features/wishlist/ui/whishlist_page.dart';
-import 'package:sample_app/view/explore_folder/scratch_card_screen.dart';
-import 'package:sample_app/view/Login/setMpin.dart';
-import 'package:sample_app/view/Login/signup.dart';
-import 'package:sample_app/view/Login/validateMpin.dart';
-import 'package:sample_app/view/app_life_cycle.dart';
-import 'package:sample_app/view/cubit/add_todo.dart';
-import 'package:sample_app/view/cubit/counter_bloc_page.dart';
-import 'package:sample_app/view/cubit/counter_page.dart';
-import 'package:sample_app/view/cubit/display_todo_list.dart';
-import 'package:sample_app/view/excel_data_view.dart';
-import 'package:sample_app/view/sign_in_with_phone.dart';
+import 'package:TalkNest/features/cart/ui/cart_page.dart';
+import 'package:TalkNest/features/home/ui/home.dart';
+import 'package:TalkNest/features/post/ui/post_page.dart';
+import 'package:TalkNest/features/wishlist/ui/whishlist_page.dart';
+import 'package:TalkNest/view/explore_folder/scratch_card_screen.dart';
+import 'package:TalkNest/view/Login/setMpin.dart';
+import 'package:TalkNest/view/Login/signup.dart';
+import 'package:TalkNest/view/Login/validateMpin.dart';
+import 'package:TalkNest/view/app_life_cycle.dart';
+import 'package:TalkNest/view/cubit/add_todo.dart';
+import 'package:TalkNest/view/cubit/counter_bloc_page.dart';
+import 'package:TalkNest/view/cubit/counter_page.dart';
+import 'package:TalkNest/view/cubit/display_todo_list.dart';
+import 'package:TalkNest/view/excel_data_view.dart';
+import 'package:TalkNest/view/sign_in_with_phone.dart';
 import '../../view/Login/forgotpassword.dart';
 import '../../view/Login/login.dart';
 import '../../view/Login/loginWithMobileView.dart';
@@ -40,7 +40,9 @@ class AppPages {
       AppRoutes.homepage: (context) => HomePage(),
       AppRoutes.cartpage: (context) => CartPage(),
       AppRoutes.whishlistPage: (context) => WhishListPage(),
-      AppRoutes.excelDataView: (context) => ExcelDataView(title: "Excel data",),
+      AppRoutes.excelDataView: (context) => ExcelDataView(
+            title: "Excel data",
+          ),
       AppRoutes.applifecycle: (context) => MyAppLifecycleObserver(),
     };
   }

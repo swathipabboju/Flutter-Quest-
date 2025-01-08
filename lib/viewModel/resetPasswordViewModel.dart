@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:sample_app/utils/Routes/appRoutes.dart';
+import 'package:TalkNest/utils/Routes/appRoutes.dart';
 
 import '../utils/CustomAlerts/customAlert_1.dart';
 

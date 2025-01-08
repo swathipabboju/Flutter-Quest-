@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:sample_app/utils/ReusableWidgets/password_textformfield.dart';
+import 'package:TalkNest/utils/ReusableWidgets/password_textformfield.dart';
 import '../../utils/ReusableWidgets/TextButton.dart';
 import '../../utils/ReusableWidgets/button.dart';
 import '../../utils/ReusableWidgets/phone_textformfield.dart';

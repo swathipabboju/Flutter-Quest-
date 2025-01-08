@@ -1,7 +1,6 @@
-
 import 'package:flutter/foundation.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:sample_app/model/cubit/todo_model.dart';
+import 'package:TalkNest/model/cubit/todo_model.dart';
 
 class TodolistCubit extends Cubit<List<TodoModel>> {
   TodolistCubit() : super([]);

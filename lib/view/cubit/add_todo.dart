@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:sample_app/cubit/todolist_cubit.dart';
+import 'package:TalkNest/cubit/todolist_cubit.dart';
 
 class AddTodo extends StatefulWidget {
   const AddTodo({super.key});

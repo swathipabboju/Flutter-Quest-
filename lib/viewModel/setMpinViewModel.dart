@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:sample_app/utils/Routes/appRoutes.dart';
+import 'package:TalkNest/utils/Routes/appRoutes.dart';
 
 class SetMpinViewModel with ChangeNotifier {
   MpinsCheck(String mpin, String Confirm_mpin, BuildContext context) {

@@ -4,8 +4,8 @@ import 'dart:convert';
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
-import 'package:sample_app/model/post_data_response.dart';
-import 'package:sample_app/repository/post_repository.dart';
+import 'package:TalkNest/model/post_data_response.dart';
+import 'package:TalkNest/repository/post_repository.dart';
 
 part 'post_event.dart';
 part 'post_state.dart';

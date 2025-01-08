@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.electrochat.in">
+    package="com.talknest.in">
    <application
-        android:label="sample_app"
+        android:label="TalkNest"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity

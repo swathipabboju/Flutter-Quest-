@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:sample_app/viewModel/bloc/counter_bloc_view_model.dart';
-import 'package:sample_app/viewModel/cubit/counter_cubit_view_model.dart';
-
+import 'package:TalkNest/viewModel/bloc/counter_bloc_view_model.dart';
+import 'package:TalkNest/viewModel/cubit/counter_cubit_view_model.dart';
 
 // bloc  rely on states
 // cubit   rely on  functions
-class CounterBlocPage extends StatelessWidget { 
+class CounterBlocPage extends StatelessWidget {
   const CounterBlocPage({super.key});
 
   @override

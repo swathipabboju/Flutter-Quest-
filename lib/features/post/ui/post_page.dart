@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:sample_app/features/post/bloc/post_bloc.dart';
+import 'package:TalkNest/features/post/bloc/post_bloc.dart';
 
 class PostPage extends StatefulWidget {
   const PostPage({super.key});
@@ -26,11 +26,11 @@ class _PostPageState extends State<PostPage> {
       body: BlocConsumer<PostBloc, PostState>(
         bloc: postBloc,
         listenWhen: (previous, current) => current is PostActionState,
-        buildWhen: (previous, current) => current is !PostActionState,
+        buildWhen: (previous, current) => current is! PostActionState,
         listener: (context, state) {
           if (state is PostAdditionSuccesfulState) {
             debugPrint("displayeddddd");
-           /*  ScaffoldMessenger.of(context).showSnackBar(
+            /*  ScaffoldMessenger.of(context).showSnackBar(
               SnackBar(content: Text(state.msg.toString())),
             ); */
           }

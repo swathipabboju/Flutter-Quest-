@@ -1,7 +1,7 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
-import 'package:sample_app/features/home/bloc/home_bloc.dart';
-import 'package:sample_app/model/bloc_model/home_product_data.dart';
+import 'package:TalkNest/features/home/bloc/home_bloc.dart';
+import 'package:TalkNest/model/bloc_model/home_product_data.dart';
 
 class ProductTileWidget extends StatelessWidget {
   final ProductDataModel productDataModel;

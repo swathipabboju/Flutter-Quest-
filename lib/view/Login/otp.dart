@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:sample_app/viewModel/otpViewModel.dart';
+import 'package:TalkNest/viewModel/otpViewModel.dart';
 import '../../utils/ReusableWidgets/pincodefield.dart';
 
 class Otp extends StatefulWidget {

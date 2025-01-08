@@ -2,10 +2,10 @@ import 'dart:async';
 
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
-import 'package:sample_app/data/cart_items.dart';
-import 'package:sample_app/data/grocery_data.dart';
-import 'package:sample_app/data/whishlist_items.dart';
-import 'package:sample_app/model/bloc_model/home_product_data.dart';
+import 'package:TalkNest/data/cart_items.dart';
+import 'package:TalkNest/data/grocery_data.dart';
+import 'package:TalkNest/data/whishlist_items.dart';
+import 'package:TalkNest/model/bloc_model/home_product_data.dart';
 
 part 'home_event.dart';
 part 'home_state.dart';

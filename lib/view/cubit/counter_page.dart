@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:sample_app/utils/Routes/appRoutes.dart';
-import 'package:sample_app/viewModel/cubit/counter_cubit_view_model.dart';
+import 'package:TalkNest/utils/Routes/appRoutes.dart';
+import 'package:TalkNest/viewModel/cubit/counter_cubit_view_model.dart';
 
 class CounterPage extends StatelessWidget {
   const CounterPage({super.key});
@@ -57,7 +57,7 @@ class CounterPage extends StatelessWidget {
 
 /* import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:sample_app/viewModel/bloc/counter_cubit_view_model.dart';
+import 'package:TalkNest/viewModel/bloc/counter_cubit_view_model.dart';
 
 class CounterPage extends StatelessWidget {
   @override

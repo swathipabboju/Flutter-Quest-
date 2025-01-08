@@ -1,6 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:sample_app/utils/Routes/appRoutes.dart';
+import 'package:TalkNest/utils/Routes/appRoutes.dart';
 
 class SignInScreen extends StatelessWidget {
   final TextEditingController _emailController = TextEditingController();

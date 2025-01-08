@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:sample_app/cubit/todolist_cubit.dart';
-import 'package:sample_app/model/cubit/todo_model.dart';
-import 'package:sample_app/utils/Routes/appRoutes.dart';
+import 'package:TalkNest/cubit/todolist_cubit.dart';
+import 'package:TalkNest/model/cubit/todo_model.dart';
+import 'package:TalkNest/utils/Routes/appRoutes.dart';
 
 class DisplayTodoList extends StatefulWidget {
   const DisplayTodoList({super.key});

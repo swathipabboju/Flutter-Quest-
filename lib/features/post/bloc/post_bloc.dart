@@ -3,6 +3,7 @@ import 'dart:convert';
 
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
+import 'package:flutter/material.dart';
 import 'package:sample_app/model/post_data_response.dart';
 import 'package:sample_app/repository/post_repository.dart';
 
@@ -12,37 +13,35 @@ part 'post_state.dart';
 class PostBloc extends Bloc<PostEvent, PostState> {
   PostBloc() : super(PostInitial()) {
     on<PostsInitialFetchEvent>(postsInitialFetchEvent);
+    on<PostAddNewPostEvent>(postAddNewPostEvent);
   }
 
   FutureOr<void> postsInitialFetchEvent(
       PostsInitialFetchEvent event, Emitter<PostState> emit) async {
     emit(PostLoadingState());
-    List<PostDataResponse>? postList = await PostRepository().getPostDetails();
-    emit(PostFetchingSuccesfulState(postList: postList));
-
-
-
-    
-    /* var client = http.Client();
-    List<PostDataResponse> postDataList = [];
     try {
-      var response = await client.get(
-        Uri.parse('https://jsonplaceholder.typicode.com/posts'),
-      );
-      if (response.statusCode == 200) {
-        var jsonResponse = jsonDecode(response.body) as List;
-        postDataList = jsonResponse
-            .map((post) => PostDataResponse.fromJson(post))
-            .toList();
-        emit(PostFetchingSuccesfulState(postList: postDataList));
+      List<PostDataResponse>? postList =
+          await PostRepository().getPostDetails();
+      emit(PostFetchingSuccesfulState(postList: postList));
+    } catch (e) {
+      emit(PostFailureCaseState(msg: e.toString()));
+    }
+  }
+
+  Future<void> postAddNewPostEvent(
+      PostAddNewPostEvent event, Emitter<PostState> emit) async {
+    try {
+      bool? success = await PostRepository().addPost();
+      if (success ?? false) {
+        debugPrint("Post added successfully");
+        emit(PostAdditionSuccesfulState(msg: "Post added successfully"));
       } else {
-        // emit(PostFailureCaseState(msg: '{response.statusCode}'));
-        emit(PostFailureCaseState(msg: 'No data Found'));
+        debugPrint("Failed to add post");
+        emit(PostAdditionErrorState(msg: "Unable to add post"));
       }
     } catch (e) {
-      emit(PostFailureCaseState(msg: '${e.toString()}'));
-    } finally {
-      client.close();
-    } */
+      emit(PostAdditionErrorState(msg: e.toString()));
+      debugPrint("Error occurred while adding post: $e");
+    }
   }
 }

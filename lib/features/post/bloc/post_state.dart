@@ -14,6 +14,7 @@ abstract class PostActionState extends PostState {}
 final class PostInitial extends PostState {}
 
 final class PostLoadingState extends PostState {}
+
 final class PostFailureCaseState extends PostState {
   final String msg;
   PostFailureCaseState({required this.msg});
@@ -22,4 +23,15 @@ final class PostFailureCaseState extends PostState {
 final class PostFetchingSuccesfulState extends PostState {
   final List<PostDataResponse>? postList;
   PostFetchingSuccesfulState({required this.postList});
+}
+
+final class PostAdditionSuccesfulState extends PostActionState {
+  final String? msg;
+
+  PostAdditionSuccesfulState({required this.msg});
+}
+
+final class PostAdditionErrorState extends PostActionState {
+    final String? msg;
+  PostAdditionErrorState({required this.msg});
 }

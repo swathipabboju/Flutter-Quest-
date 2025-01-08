@@ -9,5 +9,8 @@ sealed class PostEvent extends Equatable {
 }
 
 class PostsInitialFetchEvent extends PostEvent{
+}
+
+class PostAddNewPostEvent extends PostEvent{
   
 }

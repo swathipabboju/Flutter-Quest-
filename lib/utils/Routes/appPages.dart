@@ -3,10 +3,11 @@ import 'package:sample_app/features/cart/ui/cart_page.dart';
 import 'package:sample_app/features/home/ui/home.dart';
 import 'package:sample_app/features/post/ui/post_page.dart';
 import 'package:sample_app/features/wishlist/ui/whishlist_page.dart';
-import 'package:sample_app/view/Login/scratch_card_screen.dart';
+import 'package:sample_app/view/explore_folder/scratch_card_screen.dart';
 import 'package:sample_app/view/Login/setMpin.dart';
 import 'package:sample_app/view/Login/signup.dart';
 import 'package:sample_app/view/Login/validateMpin.dart';
+import 'package:sample_app/view/app_life_cycle.dart';
 import 'package:sample_app/view/cubit/add_todo.dart';
 import 'package:sample_app/view/cubit/counter_bloc_page.dart';
 import 'package:sample_app/view/cubit/counter_page.dart';
@@ -40,6 +41,7 @@ class AppPages {
       AppRoutes.cartpage: (context) => CartPage(),
       AppRoutes.whishlistPage: (context) => WhishListPage(),
       AppRoutes.excelDataView: (context) => ExcelDataView(title: "Excel data",),
+      AppRoutes.applifecycle: (context) => MyAppLifecycleObserver(),
     };
   }
 }

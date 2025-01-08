@@ -26,8 +26,20 @@ class _PostPageState extends State<PostPage> {
       body: BlocConsumer<PostBloc, PostState>(
         bloc: postBloc,
         listenWhen: (previous, current) => current is PostActionState,
-        buildWhen: (previous, current) => current is! PostActionState,
-        listener: (context, state) {},
+        buildWhen: (previous, current) => current is !PostActionState,
+        listener: (context, state) {
+          if (state is PostAdditionSuccesfulState) {
+            debugPrint("displayeddddd");
+           /*  ScaffoldMessenger.of(context).showSnackBar(
+              SnackBar(content: Text(state.msg.toString())),
+            ); */
+          }
+          if (state is PostFailureCaseState) {
+            ScaffoldMessenger.of(context).showSnackBar(
+              SnackBar(content: Text(state.msg.toString())),
+            );
+          }
+        },
         builder: (context, state) {
           switch (state.runtimeType) {
             case PostFetchingSuccesfulState:
@@ -64,6 +76,12 @@ class _PostPageState extends State<PostPage> {
           }
           return Container();
         },
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          postBloc.add(PostAddNewPostEvent());
+        },
+        child: Icon(Icons.add),
       ),
     );
   }

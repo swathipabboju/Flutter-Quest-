@@ -68,8 +68,8 @@ class _SuccessCustomAlertState extends State<SuccessCustomAlert> {
                 alignment: Alignment.center,
                 child: ElevatedButton(
                     style: ButtonStyle(
-                        minimumSize: MaterialStateProperty.all(Size(220, 50)),
-                        backgroundColor: MaterialStateProperty.all(
+                        minimumSize: WidgetStateProperty .all(Size(220, 50)),
+                        backgroundColor: WidgetStateProperty .all(
                             Color.fromARGB(255, 24, 134, 16))),
                     onPressed: widget.onPressed,
                     child: Text(

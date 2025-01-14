@@ -3,8 +3,13 @@ import 'package:flutter/material.dart';
 import '../utils/CustomAlerts/customAlert_1.dart';
 
 class LoginViewModel with ChangeNotifier {
-  Login(String mobile, BuildContext context) async {
-    if (validateInputs(mobile, context)) {
+  Login(String mobileNumber, BuildContext context) async {
+    if (validateInputs(mobileNumber, context)) {
+      try {
+        print("Data inserted successfully");
+      } catch (e) {
+        print("Error inserting data: $e");
+      }
       //code for verfication of mobile
     }
   }

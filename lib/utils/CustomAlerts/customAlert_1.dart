@@ -72,8 +72,8 @@ class _AlertWithSingleButtonState extends State<AlertWithSingleButton> {
                 alignment: Alignment.center,
                 child: ElevatedButton(
                     style: ButtonStyle(
-                        minimumSize: MaterialStateProperty.all(Size(220, 50)),
-                        backgroundColor: MaterialStateProperty.all(
+                        minimumSize: WidgetStateProperty.all(Size(220, 50)),
+                        backgroundColor: WidgetStateProperty.all(
                             widget.bgColor ?? AppColors.navy)),
                     onPressed: widget.onPressed,
                     child: Text(

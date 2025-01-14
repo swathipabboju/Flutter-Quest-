@@ -1,36 +1,26 @@
 {
   "project_info": {
-    "project_number": "915074933400",
-    "project_id": "electrochat-e46c0",
-    "storage_bucket": "electrochat-e46c0.appspot.com"
+    "project_number": "388488627408",
+    "project_id": "talknest-a8a6c",
+    "storage_bucket": "talknest-a8a6c.firebasestorage.app"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:915074933400:android:6808eddea7e2e1f56be6ed",
+        "mobilesdk_app_id": "1:388488627408:android:beda8c89fc7db4a7a58ad5",
         "android_client_info": {
-          "package_name": "com.electrochat.in"
+          "package_name": "com.talknest.in"
         }
       },
-      "oauth_client": [
-        {
-          "client_id": "915074933400-qr2kt56o5t0ma7qfo23k9qd37ml7nh53.apps.googleusercontent.com",
-          "client_type": 3
-        }
-      ],
+      "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyBIL_VaPerEppGi74iV95maLVMMFSYp1Zw"
+          "current_key": "AIzaSyBkVt8qVMP3W8UwgXKF3js3LJebHKQPxJI"
         }
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": [
-            {
-              "client_id": "915074933400-qr2kt56o5t0ma7qfo23k9qd37ml7nh53.apps.googleusercontent.com",
-              "client_type": 3
-            }
-          ]
+          "other_platform_oauth_client": []
         }
       }
     }

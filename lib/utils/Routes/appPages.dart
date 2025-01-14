@@ -15,7 +15,7 @@ import 'package:TalkNest/view/cubit/display_todo_list.dart';
 import 'package:TalkNest/view/excel_data_view.dart';
 import 'package:TalkNest/view/sign_in_with_phone.dart';
 import '../../view/Login/forgotpassword.dart';
-import '../../view/Login/login.dart';
+import '../../view/Login/signin.dart';
 import '../../view/Login/loginWithMobileView.dart';
 import '../../view/Login/otp.dart';
 import 'appRoutes.dart';
@@ -23,7 +23,7 @@ import 'appRoutes.dart';
 class AppPages {
   static Map<String, WidgetBuilder> get routes {
     return {
-      AppRoutes.login: (context) => LoginScreen(),
+      AppRoutes.login: (context) => SignIn(),
       AppRoutes.forgotpassword: (context) => ForgotPasswordPage(),
       AppRoutes.loginWithMobile: (context) => LoginWithMobileScreen(),
       AppRoutes.otpScreen: (context) => Otp(),

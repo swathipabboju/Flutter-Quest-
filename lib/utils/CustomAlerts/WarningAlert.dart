@@ -78,8 +78,8 @@ class _WarningAlertState extends State<WarningAlert> {
                 children: [
                   ElevatedButton(
                     style: ButtonStyle(
-                        minimumSize: MaterialStateProperty.all(Size(80, 35)),
-                        backgroundColor: MaterialStateProperty.all(
+                        minimumSize: WidgetStateProperty .all(Size(80, 35)),
+                        backgroundColor: WidgetStateProperty .all(
                             widget.Button1bgColor ?? AppColors.navy)),
                     onPressed: widget.onButton1Pressed,
                     child: Text(
@@ -89,8 +89,8 @@ class _WarningAlertState extends State<WarningAlert> {
                   ),
                   ElevatedButton(
                     style: ButtonStyle(
-                        minimumSize: MaterialStateProperty.all(Size(80, 35)),
-                        backgroundColor: MaterialStateProperty.all(
+                        minimumSize: WidgetStateProperty .all(Size(80, 35)),
+                        backgroundColor: WidgetStateProperty .all(
                             widget.Button2bgColor ?? AppColors.navy)),
                     onPressed: widget.onButton2Pressed,
                     child: Text(

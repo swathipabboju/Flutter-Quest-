@@ -6,11 +6,11 @@ class PhoneTextformfield extends StatelessWidget {
     super.key,
     required this.hintText,
     required this.controller,
-    required this.keyboardInputType,
-    required this.obscureText,
+     this.keyboardInputType,
+     this.obscureText,
     required this.node,
-    required this.action,
-    required this.onEditingComplete,
+     this.action,
+     this.onEditingComplete,
     this.globalKey,
     this.prefixIcon,
     this.onTap,
@@ -19,14 +19,14 @@ class PhoneTextformfield extends StatelessWidget {
     this.autofocus,
     required this.errorMessage,
     this.TextLength,
-    this.filterPattern,
+    this.filterPattern, this.inputFormatter,
   });
   final String hintText, errorMessage;
   final TextEditingController controller;
-  final TextInputType keyboardInputType;
-  final bool obscureText;
+  final TextInputType? keyboardInputType;
+  final bool? obscureText;
   final FocusScopeNode node;
-  final TextInputAction action;
+  final TextInputAction? action;
   final VoidCallback? onEditingComplete;
   final GlobalKey? globalKey;
   final Widget? prefixIcon;
@@ -36,6 +36,7 @@ class PhoneTextformfield extends StatelessWidget {
   final void Function()? onTap;
   final int? TextLength;
   final Pattern? filterPattern;
+  final List<TextInputFormatter>? inputFormatter;
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.all(8.0),
@@ -47,7 +48,7 @@ class PhoneTextformfield extends StatelessWidget {
             width: MediaQuery.of(context).size.width * 0.95,
             child: TextFormField(
               autofocus: autofocus ?? false,
-              obscureText: obscureText,
+              obscureText: obscureText ?? false,
               textInputAction: TextInputAction.done,
               onEditingComplete: onEditingComplete,
               controller: controller,
@@ -75,11 +76,7 @@ class PhoneTextformfield extends StatelessWidget {
                 else
                   return "";
               },
-              inputFormatters: [
-                LengthLimitingTextInputFormatter(TextLength),
-                FilteringTextInputFormatter(filterPattern ?? RegExp(r"[0-9+]"),
-                    allow: true)
-              ],
+              inputFormatters: inputFormatter,
               keyboardType: keyboardInputType,
             ),
           ),

@@ -39,7 +39,6 @@ class _MyAppLifecycleObserverState extends State<MyAppLifecycleObserver>
         print("App is hidden");
         break;
       
-      // TODO: Handle this case.
     }
   }
 

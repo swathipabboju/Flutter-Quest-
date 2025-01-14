@@ -41,49 +41,49 @@ class DefaultFirebaseOptions {
   }
 
   static const FirebaseOptions web = FirebaseOptions(
-    apiKey: 'AIzaSyCzdW-5jQgWBBNCV_uupyvuXgn7KGV7y1A',
-    appId: '1:915074933400:web:3c791a789b5cdd576be6ed',
-    messagingSenderId: '915074933400',
-    projectId: 'electrochat-e46c0',
-    authDomain: 'electrochat-e46c0.firebaseapp.com',
-    storageBucket: 'electrochat-e46c0.appspot.com',
-    measurementId: 'G-05P2T2H27E',
+    apiKey: 'AIzaSyBXw3hU3rtqROCGIyU0Glueykcbkb8NxfA',
+    appId: '1:388488627408:web:e76efb63ad63ee3fa58ad5',
+    messagingSenderId: '388488627408',
+    projectId: 'talknest-a8a6c',
+    authDomain: 'talknest-a8a6c.firebaseapp.com',
+    storageBucket: 'talknest-a8a6c.firebasestorage.app',
+    measurementId: 'G-JCBM7L36HQ',
   );
 
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyBIL_VaPerEppGi74iV95maLVMMFSYp1Zw',
-    appId: '1:915074933400:android:6808eddea7e2e1f56be6ed',
-    messagingSenderId: '915074933400',
-    projectId: 'electrochat-e46c0',
-    storageBucket: 'electrochat-e46c0.appspot.com',
+    apiKey: 'AIzaSyBkVt8qVMP3W8UwgXKF3js3LJebHKQPxJI',
+    appId: '1:388488627408:android:beda8c89fc7db4a7a58ad5',
+    messagingSenderId: '388488627408',
+    projectId: 'talknest-a8a6c',
+    storageBucket: 'talknest-a8a6c.firebasestorage.app',
   );
 
   static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyAsW8NfUQh1K5f1Ie_fbXHUYTIGcvuS9UI',
-    appId: '1:915074933400:ios:7ebb241084a9cb996be6ed',
-    messagingSenderId: '915074933400',
-    projectId: 'electrochat-e46c0',
-    storageBucket: 'electrochat-e46c0.appspot.com',
+    apiKey: 'AIzaSyBUCELd0WSaMjdrfdWUrkWX45d4harTjJc',
+    appId: '1:388488627408:ios:c3775de02f3ddd5ea58ad5',
+    messagingSenderId: '388488627408',
+    projectId: 'talknest-a8a6c',
+    storageBucket: 'talknest-a8a6c.firebasestorage.app',
     iosBundleId: 'com.cgg.gov.sampleApp',
   );
 
   static const FirebaseOptions macos = FirebaseOptions(
-    apiKey: 'AIzaSyAsW8NfUQh1K5f1Ie_fbXHUYTIGcvuS9UI',
-    appId: '1:915074933400:ios:7ebb241084a9cb996be6ed',
-    messagingSenderId: '915074933400',
-    projectId: 'electrochat-e46c0',
-    storageBucket: 'electrochat-e46c0.appspot.com',
+    apiKey: 'AIzaSyBUCELd0WSaMjdrfdWUrkWX45d4harTjJc',
+    appId: '1:388488627408:ios:c3775de02f3ddd5ea58ad5',
+    messagingSenderId: '388488627408',
+    projectId: 'talknest-a8a6c',
+    storageBucket: 'talknest-a8a6c.firebasestorage.app',
     iosBundleId: 'com.cgg.gov.sampleApp',
   );
 
   static const FirebaseOptions windows = FirebaseOptions(
-    apiKey: 'AIzaSyCzdW-5jQgWBBNCV_uupyvuXgn7KGV7y1A',
-    appId: '1:915074933400:web:db06c0f5f48717956be6ed',
-    messagingSenderId: '915074933400',
-    projectId: 'electrochat-e46c0',
-    authDomain: 'electrochat-e46c0.firebaseapp.com',
-    storageBucket: 'electrochat-e46c0.appspot.com',
-    measurementId: 'G-BNKB0G9SX2',
+    apiKey: 'AIzaSyBXw3hU3rtqROCGIyU0Glueykcbkb8NxfA',
+    appId: '1:388488627408:web:0815f0f5283dbae5a58ad5',
+    messagingSenderId: '388488627408',
+    projectId: 'talknest-a8a6c',
+    authDomain: 'talknest-a8a6c.firebaseapp.com',
+    storageBucket: 'talknest-a8a6c.firebasestorage.app',
+    measurementId: 'G-WPXTZEZGGS',
   );
 
 }

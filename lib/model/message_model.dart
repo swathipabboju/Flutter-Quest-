@@ -15,6 +15,7 @@ class Message {
     required this.status,
   });
 
+  /// Factory method to create a Message from Firestore data
   factory Message.fromFirestore(Map<String, dynamic> data) {
     // If timestamp is null, default to the current server time
     Timestamp? timestamp = data['timestamp'];
@@ -29,5 +30,16 @@ class Message {
       timestamp: timestamp,
       status: data['status'] ?? '',
     );
+  }
+
+  /// Convert the Message instance to a JSON-compatible Map
+  Map<String, dynamic> toJson() {
+    return {
+      'senderId': senderId,
+      'receiverId': receiverId,
+      'message': message,
+      'timestamp': timestamp.toDate().toIso8601String(), // Convert to ISO 8601 string
+      'status': status,
+    };
   }
 }

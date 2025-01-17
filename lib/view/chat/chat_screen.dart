@@ -130,6 +130,8 @@ class _ChatScreenState extends State<ChatScreen> {
                     return Center(child: Text('No messages yet.'));
                   },
                 ),
+             
+             
               ),
             ),
             if (isEmojiPickerVisible)

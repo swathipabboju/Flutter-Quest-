@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'dart:convert';
 import 'package:TalkNest/model/message_model.dart';
 import 'package:bloc/bloc.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -17,7 +16,6 @@ class ChatBloc extends Bloc<ChatEvent, ChatState> {
   ChatBloc() : super(ChatInitial()) {
     on<FetchMessagesEvent>(_onFetchMessagesEvent);
     on<SendMessageEvent>(_onSendMessageEvent);
-    on<MarkMessagesAsReadEvent>(_onMarkMessagesAsReadEvent);
     on<UpdateMessagesEvent>(_onUpdateMessagesEvent);
   }
 
@@ -62,10 +60,9 @@ class ChatBloc extends Bloc<ChatEvent, ChatState> {
         emit(MessageError("User not authenticated"));
         return;
       }
-      _messageSubscription?.cancel(); // Cancel previous subscription
+      _messageSubscription?.cancel();
       _messageSubscription =
           _getMessageStream(senderId, event.receiverId).listen((messages) {
-   print("messages: ${messages.map((msg) => msg.toString()).join(', ')}");
         add(UpdateMessagesEvent(messages));
       });
     } catch (e) {
@@ -94,34 +91,10 @@ class ChatBloc extends Bloc<ChatEvent, ChatState> {
         'timestamp': FieldValue.serverTimestamp(),
         'status': 'sent',
       });
-      print("sender id ${senderId}");
-      print("reciever id ${event.receiverId}");
+
       emit(MessageSentSuccess());
     } catch (e) {
       emit(MessageSentError("Failed to send message: $e"));
-    }
-  }
-
-  Future<void> _onMarkMessagesAsReadEvent(
-      MarkMessagesAsReadEvent event, Emitter<ChatState> emit) async {
-    try {
-      final senderId = firebaseAuth.currentUser?.email;
-      if (senderId == null) {
-        return;
-      }
-
-      final querySnapshot = await FirebaseFirestore.instance
-          .collection('messages')
-          .where('receiverId', isEqualTo: senderId)
-          .where('senderId', isEqualTo: event.receiverId)
-          .where('status', isNotEqualTo: 'read')
-          .get();
-
-      for (var doc in querySnapshot.docs) {
-        await doc.reference.update({'status': 'read'});
-      }
-    } catch (e) {
-      emit(MessageError("Failed to mark messages as read: $e"));
     }
   }
 

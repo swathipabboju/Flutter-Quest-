@@ -75,8 +75,32 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       print('User signed in: ${userCredential.user?.email}');
       emit(AuthSuccessState());
     } catch (e) {
+      String errorMessage = "";
+
+      if (e is FirebaseAuthException) {
+        print("e... ${e.code}");
+        // Handle specific error codes
+        switch (e.code) {
+          case 'user-not-found':
+            errorMessage = "No user found for that email.";
+            break;
+          case 'wrong-password':
+            errorMessage = "Incorrect password.";
+            break;
+          case 'invalid-email':
+            errorMessage = "The email address is badly formatted.";
+            break;
+          case 'invalid-credential':
+            errorMessage =
+                "invalid-credentials. Please try with valid credentials";
+
+          default:
+            errorMessage = "Invalid credential";
+            break;
+        }
+      }
       emit(AuthErrorState(
-          errorMessage: "Invalid credentials", source: 'SignInWithEmail'));
+          errorMessage: errorMessage, source: 'SignInWithEmail'));
     }
   }
 
@@ -84,18 +108,23 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       SignUpWithEmailEvent event, Emitter<AuthState> emit) async {
     emit(AuthLoadingState());
     try {
-      try {
-        final UserCredential userCredential = await FirebaseAuth.instance
-            .createUserWithEmailAndPassword(
-                email: event.email, password: event.password);
-        print('User signed up the gmail: ${userCredential.user?.email}');
-      } catch (e) {
-        print('Error: $e');
+      final UserCredential userCredential = await FirebaseAuth.instance
+          .createUserWithEmailAndPassword(
+              email: event.email, password: event.password);
+      print('User signed up the gmail: ${userCredential.user?.email}');
+      // Send email verification after sign-up
+      await userCredential.user?.sendEmailVerification();
+      if (userCredential.user?.emailVerified ?? false) {
+        emit(AuthSuccessState());
+      } else {
+        emit(AuthErrorState(
+          errorMessage: "Email verification failed or wasn't sent.",
+          source: 'EmailVerification',
+        ));
       }
-      emit(AuthSuccessState());
     } catch (e) {
       emit(AuthErrorState(
-        errorMessage: "Unable to insert data",
+        errorMessage: "Unable to Register the user",
         source: 'SignUpWithEmail',
       ));
     }

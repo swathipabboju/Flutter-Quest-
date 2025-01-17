@@ -1,33 +1,33 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class Message {
-  final String id;
-  final String content;
   final String senderId;
-  final DateTime timestamp;
+  final String receiverId;
+  final String message;
+  final Timestamp timestamp;
+  final String status;
 
   Message({
-    required this.id,
-    required this.content,
     required this.senderId,
+    required this.receiverId,
+    required this.message,
     required this.timestamp,
+    required this.status,
   });
 
-  factory Message.fromJson(Map<String, dynamic> json) {
-    return Message(
-      id: json['id'] as String,
-      content: json['content'] as String,
-      senderId: json['senderId'] as String,
-      timestamp: (json['timestamp'] as Timestamp).toDate(),
-    );
-  }
+  factory Message.fromFirestore(Map<String, dynamic> data) {
+    // If timestamp is null, default to the current server time
+    Timestamp? timestamp = data['timestamp'];
+    if (timestamp == null) {
+      timestamp = Timestamp.now(); // Default to current time
+    }
 
-  Map<String, dynamic> toJson() {
-    return {
-      'id': id,
-      'content': content,
-      'senderId': senderId,
-      'timestamp': timestamp,
-    };
+    return Message(
+      senderId: data['senderId'] ?? '',
+      receiverId: data['receiverId'] ?? '',
+      message: data['message'] ?? '',
+      timestamp: timestamp,
+      status: data['status'] ?? '',
+    );
   }
 }

@@ -1,6 +1,7 @@
+
 class AppRoutes {
   AppRoutes._();
-  static const initial = login;
+  static const initial = chatScreen;
   static const login = "/login.dart";
   static const loginWithMobile = "/loginWithMobileView.dart";
   static const mpin = "/mpin.dart";
@@ -21,4 +22,5 @@ class AppRoutes {
   static const whishlistPage = "/whishlistPage";
   static const excelDataView = "/excelDataView";
   static const applifecycle = "/applifecycle";
+  static const chatScreen = "/chatScreen";
 }

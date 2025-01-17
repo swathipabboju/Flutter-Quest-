@@ -19,33 +19,34 @@ class _SignInScreenState extends State<SignInScreen> {
   final FocusScopeNode pswdNode = FocusScopeNode();
   final FocusScopeNode emailNode = FocusScopeNode();
 
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(StringConstants.signUpTitle),
-      ),
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: BlocConsumer<AuthBloc, AuthState>(
-          listener: (context, state) {
-            if (state is AuthSuccessState) {
-              // Redirect to Home or another screen on success
-              Navigator.pushReplacementNamed(context, AppRoutes.login);
-            } else if (state is AuthErrorState) {
-              // Show error message if sign-up fails
-              ScaffoldMessenger.of(context).showSnackBar(
-                SnackBar(content: Text(state.errorMessage)),
-              );
-            }
-          },
-          builder: (context, state) {
-            bool isSignUpWithMobile = false; // Default value
-            if (state is ToggleSignUpMethodState) {
-              isSignUpWithMobile = state.isSignUpWithMobile;
-            }
+@override
+Widget build(BuildContext context) {
+  return Scaffold(
+    appBar: AppBar(
+      title: Text(StringConstants.signUpTitle),
+    ),
+    body: Padding(
+      padding: const EdgeInsets.all(16.0),
+      child: BlocConsumer<AuthBloc, AuthState>(
+        listener: (context, state) {
+          if (state is AuthSuccessState) {
+            // Redirect to Home or another screen on success
+            Navigator.pushReplacementNamed(context, AppRoutes.login);
+          } else if (state is AuthErrorState) {
+            // Show error message if sign-up fails
+            ScaffoldMessenger.of(context).showSnackBar(
+              SnackBar(content: Text(state.errorMessage)),
+            );
+          }
+        },
+        builder: (context, state) {
+          bool isSignUpWithMobile = false; // Default value
+          if (state is ToggleSignUpMethodState) {
+            isSignUpWithMobile = state.isSignUpWithMobile;
+          }
 
-            return Column(
+          return SingleChildScrollView(  // Wrap Column with SingleChildScrollView
+            child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 SizedBox(height: 20),
@@ -134,10 +135,13 @@ class _SignInScreenState extends State<SignInScreen> {
                 ),
                 if (state is AuthLoadingState) CircularProgressIndicator(),
               ],
-            );
-          },
-        ),
+            ),
+          );
+        },
       ),
-    );
-  }
+    ),
+  );
+}
+
+
 }

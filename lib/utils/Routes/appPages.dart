@@ -1,3 +1,4 @@
+import 'package:TalkNest/view/chat/chat_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:TalkNest/features/cart/ui/cart_page.dart';
 import 'package:TalkNest/features/home/ui/home.dart';
@@ -44,6 +45,9 @@ class AppPages {
             title: "Excel data",
           ),
       AppRoutes.applifecycle: (context) => MyAppLifecycleObserver(),
+      AppRoutes.chatScreen: (context) => ChatScreen(
+            receiverId: '',
+          ),
     };
   }
 }

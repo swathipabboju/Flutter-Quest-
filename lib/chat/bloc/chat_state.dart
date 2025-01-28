@@ -14,7 +14,8 @@ class MessageLoading extends ChatState {}
 
 class MessageLoaded extends ChatState {
   final List<Message> messages;
-
+  @override
+  String toString() => 'MessageLoaded: ${messages.length} messages loaded';
   MessageLoaded(this.messages);
 }
 

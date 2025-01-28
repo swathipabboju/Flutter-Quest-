@@ -39,116 +39,106 @@ class _ChatScreenState extends State<ChatScreen> {
         ),
         body: Column(
           children: [
-            // Use Expanded and SingleChildScrollView to ensure scrolling works
             Expanded(
-              child: SingleChildScrollView(
-                child: BlocBuilder<ChatBloc, ChatState>(
-                  builder: (context, state) {
-                    if (state is MessageLoading) {
-                      return Center(child: CircularProgressIndicator());
-                    }
-                    if (state is MessageError) {
-                      return Center(child: Text('Error: ${state.error}'));
-                    }
-                    if (state is MessageLoaded) {
-                      final messages = state.messages;
-                      return Column(
-                        children: messages
-                            .map(
-                              (message) => Align(
-                                alignment: message.senderId ==
-                                        context
-                                            .read<ChatBloc>()
-                                            .firebaseAuth
-                                            .currentUser
-                                            ?.email
-                                    ? Alignment.centerRight
-                                    : Alignment.centerLeft,
-                                child: Container(
-                                  padding: const EdgeInsets.symmetric(
-                                      horizontal: 14, vertical: 10),
-                                  margin: const EdgeInsets.symmetric(
-                                      vertical: 5, horizontal: 10),
-                                  constraints: BoxConstraints(maxWidth: 250),
-                                  decoration: BoxDecoration(
-                                    color: message.senderId ==
-                                            context
-                                                .read<ChatBloc>()
-                                                .firebaseAuth
-                                                .currentUser
-                                                ?.email
-                                        ? Colors.blueAccent
-                                        : Colors.grey.shade200,
-                                    borderRadius: BorderRadius.circular(20),
-                                  ),
-                                  child: Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      // Message content
-                                      Text(
-                                        message.message,
-                                        style: TextStyle(
-                                          color: message.senderId ==
-                                                  context
-                                                      .read<ChatBloc>()
-                                                      .firebaseAuth
-                                                      .currentUser
-                                                      ?.email
-                                              ? Colors.white
-                                              : Colors.black,
-                                          fontSize: 16,
-                                        ),
-                                      ),
-                                      Align(
-                                        alignment: Alignment.bottomRight,
-                                        child: Text(
-                                          DateFormat('h:mm a').format(
-                                            (message.timestamp).toDate(),
-                                          ),
-                                          style: TextStyle(
-                                            fontSize: 12,
-                                            color: message.senderId ==
-                                                    context
-                                                        .read<ChatBloc>()
-                                                        .firebaseAuth
-                                                        .currentUser
-                                                        ?.uid
-                                                ? Colors.white70
-                                                : Colors.black54,
-                                          ),
-                                        ),
-                                      ),
-                                    ],
+              child: BlocBuilder<ChatBloc, ChatState>(
+                builder: (context, state) {
+                  if (state is MessageLoading) {
+                    return Center(child: CircularProgressIndicator());
+                  }
+                  if (state is MessageError) {
+                    return Center(child: Text('Error: ${state.error}'));
+                  }
+                  if (state is MessageLoaded) {
+                    final messages = state.messages;
+                    return ListView.builder(
+                      reverse: true, // To show recent messages at the bottom
+                      itemCount: messages.length,
+                      itemBuilder: (context, index) {
+                        final message = messages[index];
+                        final isCurrentUser = message.senderId ==
+                            context
+                                .read<ChatBloc>()
+                                .firebaseAuth
+                                .currentUser
+                                ?.email;
+
+                        return Align(
+                          alignment: isCurrentUser
+                              ? Alignment.centerRight
+                              : Alignment.centerLeft,
+                          child: Container(
+                            padding: const EdgeInsets.symmetric(
+                                horizontal: 14, vertical: 10),
+                            margin: const EdgeInsets.symmetric(
+                                vertical: 5, horizontal: 10),
+                            constraints: BoxConstraints(maxWidth: 250),
+                            decoration: BoxDecoration(
+                              color: isCurrentUser
+                                  ? Colors.blueAccent
+                                  : Colors.grey.shade200,
+                              borderRadius: BorderRadius.circular(20),
+                            ),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  message.message,
+                                  style: TextStyle(
+                                    color: isCurrentUser
+                                        ? Colors.white
+                                        : Colors.black,
+                                    fontSize: 16,
                                   ),
                                 ),
-                              ),
-                            )
-                            .toList(),
-                      );
-                    }
-                    return Center(child: Text('No messages yet.'));
-                  },
-                ),
-             
-             
+                                Align(
+                                  alignment: Alignment.bottomRight,
+                                  child: Text(
+                                    DateFormat('h:mm a').format(
+                                      message.timestamp.toDate(),
+                                    ),
+                                    style: TextStyle(
+                                      fontSize: 12,
+                                      color: isCurrentUser
+                                          ? Colors.white70
+                                          : Colors.black54,
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        );
+                      },
+                    );
+                  }
+                  return Center(child: Text('No messages yet.'));
+                },
               ),
             ),
-            if (isEmojiPickerVisible)
-              Container(
-                height: 250,
-                child: Center(child: Text("Emoji Picker Placeholder")),
-              ),
+            /*  if (isEmojiPickerVisible)
+              Expanded(
+                child: Container(
+                  height: 250,
+                  child: Center(child: Text("Emoji Picker Placeholder")),
+                ),
+              ), */
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: Row(
                 children: [
                   IconButton(
                     icon: Icon(Icons.emoji_emotions_outlined),
-                    onPressed: toggleEmojiPicker,
+                    // onPressed:
+                    onPressed: () {},
                   ),
                   Expanded(
                     child: TextField(
+                      onEditingComplete: () {
+                        msgNode.unfocus();
+                      },
+                      onSubmitted: (value) {
+                        msgNode.unfocus();
+                      },
                       controller: msgController,
                       focusNode: msgNode,
                       decoration: InputDecoration(
@@ -168,11 +158,11 @@ class _ChatScreenState extends State<ChatScreen> {
                       final message = msgController.text.trim();
                       if (message.isNotEmpty) {
                         context.read<ChatBloc>().add(SendMessageEvent(
-                            "ravi21071994@gmail.com", message));
+                              widget.receiverId,
+                              message,
+                            ));
+
                         msgController.clear();
-                        context
-                            .read<ChatBloc>()
-                            .add(FetchMessagesEvent("ravi21071994@gmail.com"));
                       }
                     },
                   ),

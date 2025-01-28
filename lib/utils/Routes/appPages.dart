@@ -46,7 +46,7 @@ class AppPages {
           ),
       AppRoutes.applifecycle: (context) => MyAppLifecycleObserver(),
       AppRoutes.chatScreen: (context) => ChatScreen(
-            receiverId: '',
+            receiverId: 'swathippabbojupdf@gmail.com',
           ),
     };
   }

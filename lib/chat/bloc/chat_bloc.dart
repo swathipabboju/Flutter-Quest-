@@ -1,9 +1,10 @@
 import 'dart:async';
+import 'dart:convert';
 import 'package:TalkNest/model/message_model.dart';
 import 'package:bloc/bloc.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:equatable/equatable.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:equatable/equatable.dart';
 import 'package:rxdart/rxdart.dart';
 
 part 'chat_event.dart';
@@ -19,7 +20,7 @@ class ChatBloc extends Bloc<ChatEvent, ChatState> {
     on<UpdateMessagesEvent>(_onUpdateMessagesEvent);
   }
 
-  Stream<List<Message>> _getMessageStream(String senderId, String receiverId) {
+  /* Stream<List<Message>> _getMessageStream(String senderId, String receiverId) {
     final sentMessagesStream = FirebaseFirestore.instance
         .collection('messages')
         .where('senderId', isEqualTo: senderId)
@@ -39,6 +40,7 @@ class ChatBloc extends Bloc<ChatEvent, ChatState> {
         .map((snapshot) => snapshot.docs
             .map((doc) => Message.fromFirestore(doc.data()))
             .toList());
+            
 
     return Rx.combineLatest2<List<Message>, List<Message>, List<Message>>(
       sentMessagesStream,
@@ -46,9 +48,32 @@ class ChatBloc extends Bloc<ChatEvent, ChatState> {
       (sent, received) {
         final allMessages = [...sent, ...received];
         allMessages.sort((a, b) => b.timestamp.compareTo(a.timestamp));
+        print("all messages ${jsonEncode(allMessages)}");
         return allMessages;
       },
     );
+  } */
+  Stream<List<Message>> _getMessageStream(
+    String senderId,
+    /* String receiverId */
+  ) {
+    return FirebaseFirestore.instance
+        .collection('messages')
+        .where('senderId', isEqualTo: senderId) // Only sender's messages
+
+        .orderBy('timestamp', descending: true) // Sort by latest messages
+        .snapshots()
+        .map((snapshot) {
+      final messages = snapshot.docs
+          .map((doc) => Message.fromFirestore(doc.data()))
+          .toList();
+
+      // Debugging: Log messages count and content
+      print("Sender's messages count: ${messages.length}, ${senderId}");
+      print("Messages: ${messages.map((m) => m.toJson()).toList()}");
+
+      return messages;
+    });
   }
 
   Future<void> _onFetchMessagesEvent(
@@ -60,9 +85,11 @@ class ChatBloc extends Bloc<ChatEvent, ChatState> {
         emit(MessageError("User not authenticated"));
         return;
       }
+
       _messageSubscription?.cancel();
-      _messageSubscription =
-          _getMessageStream(senderId, event.receiverId).listen((messages) {
+      _messageSubscription = _getMessageStream(
+        senderId, /* event.receiverId */
+      ).listen((messages) {
         add(UpdateMessagesEvent(messages));
       });
     } catch (e) {
@@ -89,9 +116,7 @@ class ChatBloc extends Bloc<ChatEvent, ChatState> {
         'receiverId': event.receiverId,
         'message': event.message,
         'timestamp': FieldValue.serverTimestamp(),
-        'status': 'sent',
       });
-
       emit(MessageSentSuccess());
     } catch (e) {
       emit(MessageSentError("Failed to send message: $e"));

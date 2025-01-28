@@ -1,28 +1,32 @@
 part of 'chat_bloc.dart';
 
-sealed class ChatState extends Equatable {
+abstract class ChatState extends Equatable {
   const ChatState();
-  
+
   @override
-  List<Object> get props => [];
+  List<Object?> get props => [];
 }
 
-final class ChatInitial extends ChatState {}
-
+class ChatInitial extends ChatState {}
 
 class MessageLoading extends ChatState {}
 
 class MessageLoaded extends ChatState {
   final List<Message> messages;
+
+  const MessageLoaded(this.messages);
+
   @override
-  String toString() => 'MessageLoaded: ${messages.length} messages loaded';
-  MessageLoaded(this.messages);
+  List<Object?> get props => [messages];
 }
 
 class MessageError extends ChatState {
   final String error;
 
-  MessageError(this.error);
+  const MessageError(this.error);
+
+  @override
+  List<Object?> get props => [error];
 }
 
 class MessageSentSuccess extends ChatState {}
@@ -30,5 +34,8 @@ class MessageSentSuccess extends ChatState {}
 class MessageSentError extends ChatState {
   final String error;
 
-  MessageSentError(this.error);
+  const MessageSentError(this.error);
+
+  @override
+  List<Object?> get props => [error];
 }

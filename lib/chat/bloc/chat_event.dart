@@ -28,9 +28,7 @@ class SendMessageEvent extends ChatEvent {
 
 class UpdateMessagesEvent extends ChatEvent {
   final List<Message> messages;
-
   const UpdateMessagesEvent(this.messages);
-
   @override
   List<Object> get props => [messages];
 }

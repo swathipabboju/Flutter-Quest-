@@ -1,11 +1,9 @@
 import 'dart:async';
-import 'dart:convert';
 import 'package:TalkNest/model/message_model.dart';
 import 'package:bloc/bloc.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:equatable/equatable.dart';
-import 'package:rxdart/rxdart.dart';
 
 part 'chat_event.dart';
 part 'chat_state.dart';
@@ -20,64 +18,27 @@ class ChatBloc extends Bloc<ChatEvent, ChatState> {
     on<UpdateMessagesEvent>(_onUpdateMessagesEvent);
   }
 
-  /* Stream<List<Message>> _getMessageStream(String senderId, String receiverId) {
-    final sentMessagesStream = FirebaseFirestore.instance
+  // Method to get messages for a specific sender and receiver
+  Stream<List<Message>> _getMessageStream(String senderId, String receiverId) {
+    return FirebaseFirestore.instance
         .collection('messages')
         .where('senderId', isEqualTo: senderId)
         .where('receiverId', isEqualTo: receiverId)
-        .orderBy('timestamp', descending: true)
-        .snapshots()
-        .map((snapshot) => snapshot.docs
-            .map((doc) => Message.fromFirestore(doc.data()))
-            .toList());
-
-    final receivedMessagesStream = FirebaseFirestore.instance
-        .collection('messages')
-        .where('senderId', isEqualTo: receiverId)
-        .where('receiverId', isEqualTo: senderId)
-        .orderBy('timestamp', descending: true)
-        .snapshots()
-        .map((snapshot) => snapshot.docs
-            .map((doc) => Message.fromFirestore(doc.data()))
-            .toList());
-            
-
-    return Rx.combineLatest2<List<Message>, List<Message>, List<Message>>(
-      sentMessagesStream,
-      receivedMessagesStream,
-      (sent, received) {
-        final allMessages = [...sent, ...received];
-        allMessages.sort((a, b) => b.timestamp.compareTo(a.timestamp));
-        print("all messages ${jsonEncode(allMessages)}");
-        return allMessages;
-      },
-    );
-  } */
-  Stream<List<Message>> _getMessageStream(
-    String senderId,
-    /* String receiverId */
-  ) {
-    return FirebaseFirestore.instance
-        .collection('messages')
-        .where('senderId', isEqualTo: senderId) // Only sender's messages
-
-        .orderBy('timestamp', descending: true) // Sort by latest messages
+        .orderBy('timestamp', descending: true) // Ensure messages are ordered
         .snapshots()
         .map((snapshot) {
       final messages = snapshot.docs
           .map((doc) => Message.fromFirestore(doc.data()))
           .toList();
 
-      // Debugging: Log messages count and content
-      print("Sender's messages count: ${messages.length}, ${senderId}");
-      print("Messages: ${messages.map((m) => m.toJson()).toList()}");
-
+      // Log messages count for debugging
+      print("Fetched messages: ${messages.length}");
       return messages;
     });
   }
 
-  Future<void> _onFetchMessagesEvent(
-      FetchMessagesEvent event, Emitter<ChatState> emit) async {
+  // Fetch messages event handler
+  Future<void> _onFetchMessagesEvent(FetchMessagesEvent event, Emitter<ChatState> emit) async {
     emit(MessageLoading());
     try {
       final senderId = firebaseAuth.currentUser?.email;
@@ -87,23 +48,22 @@ class ChatBloc extends Bloc<ChatEvent, ChatState> {
       }
 
       _messageSubscription?.cancel();
-      _messageSubscription = _getMessageStream(
-        senderId, /* event.receiverId */
-      ).listen((messages) {
-        add(UpdateMessagesEvent(messages));
+      _messageSubscription = _getMessageStream(senderId, event.receiverId).listen((messages) {
+        add(UpdateMessagesEvent(messages));  // Update messages when stream emits
       });
     } catch (e) {
       emit(MessageError("Failed to fetch messages: $e"));
     }
   }
 
-  void _onUpdateMessagesEvent(
-      UpdateMessagesEvent event, Emitter<ChatState> emit) {
-    emit(MessageLoaded(event.messages));
+  // Update messages event handler
+  void _onUpdateMessagesEvent(UpdateMessagesEvent event, Emitter<ChatState> emit) {
+    print("Updated messages: ${event.messages.length}");
+    emit(MessageLoaded(event.messages));  // Emit the new message list
   }
 
-  Future<void> _onSendMessageEvent(
-      SendMessageEvent event, Emitter<ChatState> emit) async {
+  // Send message event handler
+  Future<void> _onSendMessageEvent(SendMessageEvent event, Emitter<ChatState> emit) async {
     try {
       final senderId = firebaseAuth.currentUser?.email;
       if (senderId == null) {
@@ -111,12 +71,17 @@ class ChatBloc extends Bloc<ChatEvent, ChatState> {
         return;
       }
 
+      // Add the message to Firestore
       await FirebaseFirestore.instance.collection('messages').add({
         'senderId': senderId,
         'receiverId': event.receiverId,
         'message': event.message,
         'timestamp': FieldValue.serverTimestamp(),
       });
+
+      // After sending a message, re-fetch messages to update the UI
+      add(FetchMessagesEvent(event.receiverId));  // Trigger re-fetch of messages
+
       emit(MessageSentSuccess());
     } catch (e) {
       emit(MessageSentError("Failed to send message: $e"));

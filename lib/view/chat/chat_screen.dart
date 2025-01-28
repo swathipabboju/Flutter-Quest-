@@ -93,9 +93,8 @@ class _ChatScreenState extends State<ChatScreen> {
                                 Align(
                                   alignment: Alignment.bottomRight,
                                   child: Text(
-                                    DateFormat('h:mm a').format(
-                                      message.timestamp.toDate(),
-                                    ),
+                                    DateFormat('h:mm a')
+                                        .format(message.timestamp.toDate()),
                                     style: TextStyle(
                                       fontSize: 12,
                                       color: isCurrentUser

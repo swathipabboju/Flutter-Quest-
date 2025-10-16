@@ -1,7 +1,7 @@
 
 class AppRoutes {
   AppRoutes._();
-  static const initial = chatScreen;
+  static const initial = login;
   static const login = "/login.dart";
   static const loginWithMobile = "/loginWithMobileView.dart";
   static const mpin = "/mpin.dart";
